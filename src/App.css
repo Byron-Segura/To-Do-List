@@ -1,0 +1,73 @@
+.app {
+  margin: 0 auto;
+  text-align: center;
+  overflow-x: hidden;
+  height: 100vh;
+  --dark-bg-color: #212e36;
+  --dark-first-color: #2088d2;
+  --dark-second-color: #192229;
+  --light-bg-color: #f3f3f3;
+  --light-first-color: #d90062;
+  --light-second-color: #14192d;
+  --gray-light-color: #e0e0e0;
+}
+
+/***** Dark Theme*****/
+
+.dark {
+  background-color: var(--dark-bg-color);
+  color: var(--dark-first-color);
+}
+
+.dark .avatar {
+  border: 1px solid var(--dark-first-color);
+  background-color: var(--dark-second-color);
+}
+
+.dark button.action-btn {
+  border: none;
+  background-color: var(--dark-second-color);
+  color: var(--dark-first-color);
+}
+
+.dark .header {
+  background-color: var(--dark-second-color);
+}
+
+.dark .form-input {
+  background-color: var(--gray-light-color);
+}
+
+.dark .form-input:focus {
+  outline: none;
+  border: 1.5px solid var(--dark-first-color);
+  border-right: none;
+}
+
+/***** Light Theme*****/
+
+.light {
+  background-color: var(--light-bg-color);
+  color: var(--light-first-color);
+}
+
+.light .avatar {
+  border: 1px solid var(--light-first-color);
+  background-color: var(--light-second-color);
+}
+
+.light button.action-btn {
+  border: none;
+  background-color: var(--light-second-color);
+  color: var(--light-first-color);
+}
+
+.light .header {
+  background-color: var(--light-second-color);
+}
+
+.light .form-input:focus {
+  border: 1.5px solid var(--light-first-color);
+  border-right: none;
+  outline: none;
+}

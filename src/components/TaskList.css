@@ -1,0 +1,23 @@
+.tasks-container {
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+  min-width: 200px;
+  margin: 3rem auto;
+  padding: 1rem;
+  border-radius: 20px;
+  background-color: #e0e0e0;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px 3px 0 0;
+  font-size: 16px;
+}
+
+.tasks-header > div {
+  display: flex;
+  gap: 0.5rem;
+}
