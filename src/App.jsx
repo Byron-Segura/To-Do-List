@@ -16,10 +16,11 @@ const initialDelete = {
 
 function App () {
   const { theme } = useTheme()
+  const [openModal, setOpenModal] = useState(false)
+
   const { setTodosContext } = useTodos(TodosContext)
   const [todos, setTodos] = useState([])
   const [valueToEdit, setValueToEdit] = useState(null)
-  const [openModal, setOpenModal] = useState(false)
   const [valueToDelete, setValueToDelete] = useState(initialDelete)
 
   useEffect(() => {
@@ -62,7 +63,6 @@ function App () {
     data.id = Date.now()
     const newTodos = [...todos, data]
     setTodos(newTodos)
-    updateLocalStorage(todos)
     updateLocalStorage(newTodos)
   }
 
