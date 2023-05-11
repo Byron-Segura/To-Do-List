@@ -1,5 +1,6 @@
 import './TaskForm.css'
-import { useEffect, useState } from 'react'
+import { useValue } from '../hooks/useValue'
+import { formEventsHandler } from '../helper/FormEventsHelper'
 
 const initialValue = {
   text: '',
@@ -8,48 +9,22 @@ const initialValue = {
 }
 
 export function TaskForm ({ createToDo, updateTodo, valueToEdit, setValueToEdit }) {
-  const [value, setValue] = useState(initialValue)
-
-  useEffect(() => {
-    if (valueToEdit === null) {
-      setValue(initialValue)
-    } else {
-      setValue(valueToEdit)
-    }
-  }, [valueToEdit])
-
-  const handleInputChange = (e) => {
-    const newValue = {
-      ...value,
-      text: e.target.value
-    }
-    setValue(newValue)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!value.text) return
-
-    if (value.id === null) {
-      createToDo(value)
-    } else {
-      updateTodo(value)
-    }
-
-    handleReset()
-  }
-
-  const handleReset = () => {
-    setValue(initialValue)
-    setValueToEdit(null)
-  }
+  const { value, setValue } = useValue(valueToEdit, initialValue)
+  const { handleChange, handleSubmit } = formEventsHandler(
+    value,
+    setValue,
+    initialValue,
+    createToDo,
+    updateTodo,
+    setValueToEdit
+  )
 
   return (
     <section className='form-container'>
 
       <form className='form-form' onSubmit={handleSubmit}>
         <input
-          onChange={handleInputChange}
+          onChange={handleChange}
           className='form-input'
           value={value.text}
           type='text'
