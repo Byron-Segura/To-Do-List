@@ -56,6 +56,7 @@ function App () {
 
   const updateTodo = (data) => {
     edit(data)
+    setValueToEdit(null)
   }
 
   const deleteTodo = (data) => {
@@ -74,15 +75,11 @@ function App () {
 
       <TaskForm createToDo={createToDo} updateTodo={updateTodo} valueToEdit={valueToEdit} setValueToEdit={setValueToEdit} />
 
-      {
-        todos.length > 0 &&
-          <TaskList todos={todos} handleDelete={handleDelete} setValueToEdit={setValueToEdit} setOpenModal={setOpenModal} completeTodo={completeTodo} />
-      }
+      {todos.length > 0 &&
+        <TaskList todos={todos} handleDelete={handleDelete} setValueToEdit={setValueToEdit} setOpenModal={setOpenModal} completeTodo={completeTodo} />}
 
-      {
-        openModal &&
-          <ModalDelete setOpenModal={setOpenModal} setValueToDelete={setValueToDelete} valueToDelete={valueToDelete} />
-      }
+      {openModal &&
+        <ModalDelete setOpenModal={setOpenModal} setValueToDelete={setValueToDelete} valueToDelete={valueToDelete} />}
 
     </div>
   )
