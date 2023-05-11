@@ -4,11 +4,9 @@ import { TaskForm } from './components/TaskForm'
 import { TaskList } from './components/TaskList'
 import './App.css'
 import { ModalDelete } from './components/ModalDelete'
-import { TodosContext } from './context/todos'
-import { useTodos } from './hooks/useTodos'
 import { useTheme } from './hooks/useTheme'
+import { useTodosList } from './store/todos'
 
-const ls = window.localStorage
 const initialDelete = {
   confirmDelete: false,
   id: null
@@ -17,26 +15,15 @@ const initialDelete = {
 function App () {
   const { theme } = useTheme()
   const [openModal, setOpenModal] = useState(false)
-
-  const { setTodosContext } = useTodos(TodosContext)
-  const [todos, setTodos] = useState([])
   const [valueToEdit, setValueToEdit] = useState(null)
   const [valueToDelete, setValueToDelete] = useState(initialDelete)
 
-  useEffect(() => {
-    if (ls.getItem('todos') === null) {
-      setTodosContext([])
-    }
-    if (ls.getItem('todos')) {
-      const storedTodos = JSON.parse(ls.getItem('todos'))
-      setTodos(storedTodos)
-    }
-  }, [])
-
-  const updateLocalStorage = (context) => {
-    const newData = JSON.stringify(context)
-    ls.setItem('todos', newData)
-  }
+  const addTodo = useTodosList(state => state.addTodo)
+  const deleteTodos = useTodosList(state => state.deleteTodo)
+  const edit = useTodosList(state => state.editTodo)
+  const complete = useTodosList(state => state.completeTodo)
+  const reset = useTodosList(state => state.resetTodos)
+  const todos = useTodosList(state => state.todos)
 
   const handleDelete = (data) => {
     if (data) {
@@ -50,49 +37,34 @@ function App () {
   }
 
   useEffect(() => {
-    if (valueToDelete.confirmDelete) {
-      resetTodos()
-    }
-
     if (valueToDelete.id && valueToDelete.confirmDelete) {
       deleteTodo(valueToDelete.id)
+    } else if (valueToDelete.confirmDelete) {
+      resetTodos()
     }
   }, [valueToDelete])
 
   const createToDo = (data) => {
-    data.id = Date.now()
-    const newTodos = [...todos, data]
-    setTodos(newTodos)
-    updateLocalStorage(newTodos)
+    addTodo(data)
   }
 
   const resetTodos = () => {
-    setTodos([])
+    reset()
     setValueToEdit(null)
     setValueToDelete(initialDelete)
-    setOpenModal(false)
-    updateLocalStorage(todos)
-    updateLocalStorage([])
   }
 
   const updateTodo = (data) => {
-    const updatedTodos = todos.map((el) => el.id === data.id ? data : el)
-    setTodos(updatedTodos)
-    updateLocalStorage(updatedTodos)
+    edit(data)
   }
 
   const deleteTodo = (data) => {
-    const newTodos = todos.filter(el => el.id !== data)
-    setTodos(newTodos)
+    deleteTodos(data)
     setValueToDelete(initialDelete)
-    setOpenModal(false)
-    updateLocalStorage(newTodos)
   }
 
   const completeTodo = (data) => {
-    setTimeout(() => {
-      deleteTodo(data)
-    }, 1000)
+    complete(data)
   }
 
   return (
