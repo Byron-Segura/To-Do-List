@@ -2,21 +2,13 @@ import './TaskForm.css'
 import { useValue } from '../hooks/useValue'
 import { formEventsHandler } from '../helper/FormEventsHelper'
 
-const initialValue = {
-  text: '',
-  isDone: false,
-  id: null
-}
-
-export function TaskForm ({ createToDo, updateTodo, valueToEdit, setValueToEdit }) {
-  const { value, setValue } = useValue(valueToEdit, initialValue)
+export function TaskForm () {
+  const { value, setValue, initialValue, setValueToEdit } = useValue()
   const { handleChange, handleSubmit } = formEventsHandler(
     value,
     setValue,
-    initialValue,
-    createToDo,
-    updateTodo,
-    setValueToEdit
+    setValueToEdit,
+    initialValue
   )
 
   return (

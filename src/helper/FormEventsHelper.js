@@ -1,11 +1,13 @@
+import { useTodos } from '../hooks/useTodos'
+
 export function formEventsHandler (
   value,
-  initialValue,
   setValue,
-  createToDo,
-  updateTodo,
-  setValueToEdit
+  setValueToEdit,
+  initialValue
 ) {
+  const { createTodo, editTodo } = useTodos()
+
   const handleChange = (e) => {
     const newValue = {
       ...value,
@@ -16,12 +18,14 @@ export function formEventsHandler (
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     if (!value.text) return
 
     if (value.id === null) {
-      createToDo(value)
+      createTodo(value)
     } else {
-      updateTodo(value)
+      editTodo(value)
+      setValueToEdit(null)
     }
 
     handleReset()
