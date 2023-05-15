@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export const useTodosList = create(persist((set, get) => {
+export const useTodosStore = create(persist((set, get) => {
   return {
     todos: [],
+    modal: false,
 
     addTodo: (data) => {
       const { todos } = get()
@@ -34,6 +35,11 @@ export const useTodosList = create(persist((set, get) => {
       const updatedTodos = todos.map((el) => el.id === data.id ? data : el)
 
       set({ todos: updatedTodos })
+    },
+
+    openModal: (data) => {
+      const newModal = data
+      set({ modal: newModal })
     },
 
     resetTodos: () => {
