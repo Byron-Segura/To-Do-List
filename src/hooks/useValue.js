@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
 
-export function useValue (valueToEdit, initialValue) {
+const initialValue = {
+  text: '',
+  isDone: false,
+  id: null
+}
+
+export function useValue () {
   const [value, setValue] = useState(initialValue)
+  const [valueToEdit, setValueToEdit] = useState(null)
 
   useEffect(() => {
     if (valueToEdit === null) {
@@ -11,5 +18,5 @@ export function useValue (valueToEdit, initialValue) {
     }
   }, [valueToEdit])
 
-  return { value, setValue }
+  return { value, setValue, initialValue, setValueToEdit, valueToEdit }
 }

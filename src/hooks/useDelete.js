@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useTodosStore } from './useTodos'
-import { useModal } from './useModal'
+import { useTodos } from './useTodos'
 
 const initialDelete = {
   confirmDelete: false,
@@ -8,21 +7,13 @@ const initialDelete = {
 }
 
 export function useDelete () {
-  const { deleteTodos, reset } = useTodosStore()
-  const { setOpenModal } = useModal()
+  const { deleteTodo, resetTodos } = useTodos()
   const [valueToDelete, setValueToDelete] = useState(initialDelete)
-
-  const deleteTodo = (data) => {
-    deleteTodos(data)
-  }
-
-  const resetTodos = () => {
-    reset()
-  }
+  const { openModal } = useTodos()
 
   const handleDelete = (data) => {
     if (data) {
-      setOpenModal(true)
+      openModal(true)
       const newToDelete = {
         ...valueToDelete,
         id: data

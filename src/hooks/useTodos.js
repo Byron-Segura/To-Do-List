@@ -1,31 +1,14 @@
-import { useTodosList } from '../store/todos'
+import { useTodosStore } from '../store/todos'
 
-export function useTodosStore () {
-  const addTodo = useTodosList(state => state.addTodo)
-  const deleteTodos = useTodosList(state => state.deleteTodo)
-  const edit = useTodosList(state => state.editTodo)
-  const complete = useTodosList(state => state.completeTodo)
-  const reset = useTodosList(state => state.resetTodos)
-  const todos = useTodosList(state => state.todos)
+export function useTodos () {
+  const createTodo = useTodosStore(state => state.addTodo)
+  const deleteTodo = useTodosStore(state => state.deleteTodo)
+  const editTodo = useTodosStore(state => state.editTodo)
+  const completeTodo = useTodosStore(state => state.completeTodo)
+  const resetTodos = useTodosStore(state => state.resetTodos)
+  const todos = useTodosStore(state => state.todos)
+  const modal = useTodosStore(state => state.modal)
+  const openModal = useTodosStore(state => state.openModal)
 
-  const createToDo = (data) => {
-    addTodo(data)
-  }
-
-  const deleteTodo = (data) => {
-    deleteTodos(data)
-  }
-
-  const resetTodos = () => {
-    reset()
-  }
-
-  const updateTodo = (data) => {
-    edit(data)
-  }
-
-  const completeTodo = (data) => {
-    complete(data)
-  }
-  return { createToDo, completeTodo, deleteTodo, todos, updateTodo, resetTodos }
+  return { createTodo, completeTodo, deleteTodo, todos, editTodo, resetTodos, modal, openModal }
 }
