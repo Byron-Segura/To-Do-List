@@ -9,6 +9,7 @@ export function useTodos () {
   const todos = useTodosStore(state => state.todos)
   const modal = useTodosStore(state => state.modal)
   const openModal = useTodosStore(state => state.openModal)
+  const valueToDelete = useTodosStore(state => state.valueToDelete)
 
-  return { createTodo, completeTodo, deleteTodo, todos, editTodo, resetTodos, modal, openModal }
+  return { createTodo, completeTodo, deleteTodo, todos, editTodo, resetTodos, modal, openModal, valueToDelete }
 }

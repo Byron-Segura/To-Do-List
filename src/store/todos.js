@@ -5,6 +5,7 @@ export const useTodosStore = create(persist((set, get) => {
   return {
     todos: [],
     modal: false,
+    valueToDelete: null,
 
     addTodo: (data) => {
       const { todos } = get()
@@ -37,9 +38,11 @@ export const useTodosStore = create(persist((set, get) => {
       set({ todos: updatedTodos })
     },
 
-    openModal: (data) => {
+    openModal: (data, id) => {
       const newModal = data
-      set({ modal: newModal })
+      const newDelete = id !== null ? id : null
+
+      set({ modal: newModal, valueToDelete: newDelete })
     },
 
     resetTodos: () => {
