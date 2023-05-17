@@ -22,6 +22,7 @@ export function TaskList () {
           <Todo
             todo={todo}
             completeTodo={completeTodo}
+            openModal={openModal}
             handleDelete={handleDelete}
             setValueToEdit={setValueToEdit}
             key={todo.id}

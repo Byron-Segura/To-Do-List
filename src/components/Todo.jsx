@@ -1,7 +1,7 @@
 import { DeleteIcon, EditIcon } from './Icons'
 import './Todo.css'
 
-export function Todo ({ todo, setValueToEdit, handleDelete, completeTodo }) {
+export function Todo ({ todo, setValueToEdit, completeTodo, openModal }) {
   const { id, text } = todo
 
   return (
@@ -20,7 +20,7 @@ export function Todo ({ todo, setValueToEdit, handleDelete, completeTodo }) {
         <button>
           <i
             className='icon task-delete'
-            onClick={() => handleDelete(id)}
+            onClick={() => openModal(true, id)}
           >
             <DeleteIcon />
           </i>

@@ -1,14 +1,14 @@
 import './TaskForm.css'
 import { useValue } from '../hooks/useValue'
 import { formEventsHandler } from '../helper/FormEventsHelper'
+import { useTodos } from '../hooks/useTodos'
 
 export function TaskForm () {
-  const { value, setValue, initialValue, setValueToEdit } = useValue()
+  const { setValueToEdit } = useValue()
+  const { formValue } = useTodos()
+
   const { handleChange, handleSubmit } = formEventsHandler(
-    value,
-    setValue,
-    setValueToEdit,
-    initialValue
+    setValueToEdit
   )
 
   return (
@@ -18,7 +18,7 @@ export function TaskForm () {
         <input
           onChange={handleChange}
           className='form-input'
-          value={value.text}
+          value={formValue.text === '' ? '' : formValue.text}
           type='text'
           placeholder='Clean the bedroom, Study science...'
         />

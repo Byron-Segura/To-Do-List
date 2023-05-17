@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react'
+import { useTodos } from './useTodos'
 
 const initialValue = {
   text: '',
-  isDone: false,
   id: null
 }
 
 export function useValue () {
-  const [value, setValue] = useState(initialValue)
+  const { handleValue } = useTodos()
   const [valueToEdit, setValueToEdit] = useState(null)
 
   useEffect(() => {
-    if (valueToEdit === null) {
-      setValue(initialValue)
-    } else {
-      setValue(valueToEdit)
-    }
+    handleValue(valueToEdit)
   }, [valueToEdit])
 
-  return { value, setValue, initialValue, setValueToEdit, valueToEdit }
+  useEffect(() => {
+    handleValue(initialValue)
+  }, [])
+
+  return { setValueToEdit, valueToEdit }
 }

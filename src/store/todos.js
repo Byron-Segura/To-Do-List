@@ -6,6 +6,14 @@ export const useTodosStore = create(persist((set, get) => {
     todos: [],
     modal: false,
     valueToDelete: null,
+    formValue: '',
+
+    handleValue: (data) => {
+      const newValue = {
+        ...data
+      }
+      set({ formValue: newValue })
+    },
 
     addTodo: (data) => {
       const { todos } = get()

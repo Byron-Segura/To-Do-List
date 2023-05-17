@@ -1,30 +1,32 @@
 import { useTodos } from '../hooks/useTodos'
 
+const initialValue = {
+  text: '',
+  id: null
+}
+
 export function formEventsHandler (
-  value,
-  setValue,
-  setValueToEdit,
-  initialValue
+  setValueToEdit
 ) {
-  const { createTodo, editTodo } = useTodos()
+  const { createTodo, editTodo, formValue, handleValue } = useTodos()
 
   const handleChange = (e) => {
     const newValue = {
-      ...value,
+      ...formValue,
       text: e.target.value
     }
-    setValue(newValue)
+    handleValue(newValue)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!value.text) return
+    if (!formValue.text) return
 
-    if (value.id === null) {
-      createTodo(value)
+    if (formValue.id === null) {
+      createTodo(formValue)
     } else {
-      editTodo(value)
+      editTodo(formValue)
       setValueToEdit(null)
     }
 
@@ -32,8 +34,7 @@ export function formEventsHandler (
   }
 
   const handleReset = () => {
-    setValue(initialValue)
-    setValueToEdit(null)
+    handleValue(initialValue)
   }
 
   return { handleChange, handleSubmit }
