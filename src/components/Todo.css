@@ -7,8 +7,9 @@
   justify-content: space-between;
   margin: 0 auto;
   background-color: #f1f1f1;
-  margin: 1rem 0;
-  border-radius: 20px;
+  border-width: 1px 0px;
+  border-color: #e1e1e1;
+  border-style: solid;
 }
 
 .task > div {
@@ -18,17 +19,12 @@
 }
 
 .task-text {
+  font-size: 20px;
   padding: 0;
   margin: 0;
   margin-right: 10px;
   word-break: break-all;
   text-align: left;
-}
-
-.task-check {
-  width: 1.2rem;
-  height: 1.2rem;
-  cursor: pointer;
 }
 
 .icon {
@@ -46,16 +42,37 @@
   border-radius: 100%;
 }
 
-/*** Complete Todo Transition ***/
-.task input[type="checkbox"]:checked {
-  height: 1rem;
-  opacity: 0;
-  transition: all ease-in-out 1s;
+.task button:hover {
+  opacity: 0.75;
 }
 
-input[type="checkbox"]:checked ~ p {
-  color: #67ee3e;
-  opacity: 0;
+/*** Complete Todo Transition ***/
+
+.check {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 1.2rem;
+  width: 1.2rem;
+  position: relative;
+  transition: 0.1s;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  background-color: #fff;
+  border: 1px solid #848484;
+  border-radius: 2px;
+}
+
+.check:checked {
+  background-color: #21b511;
+}
+
+.check:checked ~ p {
   text-decoration: line-through;
-  transition: all ease-in-out 1s;
+  color: #949494;
+  transition: all ease-in-out 0.5s;
+}
+
+.check:checked:before {
+  content: "✔";
 }

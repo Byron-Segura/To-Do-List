@@ -4,17 +4,19 @@
   max-width: 720px;
   min-width: 200px;
   margin: 3rem auto;
-  padding: 1rem;
-  border-radius: 20px;
-  background-color: #e0e0e0;
+  border-radius: 2px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px #0003, 0 25px 50px #0000001a;
 }
 
 .tasks-header {
   display: flex;
+  padding: 0.7rem 1rem;
   justify-content: space-between;
   align-items: center;
   border-radius: 3px 3px 0 0;
   font-size: 16px;
+  margin-bottom: 0.2rem;
 }
 
 .tasks-header > div {
