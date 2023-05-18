@@ -1,7 +1,7 @@
-import { useTodos } from './useTodos'
+import { useStore } from './useStore'
 
 export function useDelete () {
-  const { deleteTodo, resetTodos, openModal } = useTodos()
+  const { deleteTodo, resetTodos, openModal } = useStore()
 
   const handleDelete = (data) => {
     if (data) {

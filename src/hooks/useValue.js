@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useTodos } from './useTodos'
+import { useStore } from './useStore'
 
 const initialValue = {
   text: '',
@@ -7,7 +7,7 @@ const initialValue = {
 }
 
 export function useValue () {
-  const { handleValue } = useTodos()
+  const { handleValue } = useStore()
   const [valueToEdit, setValueToEdit] = useState(null)
 
   useEffect(() => {
@@ -18,5 +18,5 @@ export function useValue () {
     handleValue(initialValue)
   }, [])
 
-  return { setValueToEdit, valueToEdit }
+  return { setValueToEdit, valueToEdit, initialValue }
 }

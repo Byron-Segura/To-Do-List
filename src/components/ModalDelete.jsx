@@ -1,11 +1,11 @@
 /* import { useDelete } from '../hooks/useDelete' */
 import { useDelete } from '../hooks/useDelete'
-import { useTodos } from '../hooks/useTodos'
+import { useStore } from '../hooks/useStore'
 import { DeleteIcon } from './Icons'
 import './ModalDelete.css'
 
 export function ModalDelete () {
-  const { openModal, valueToDelete } = useTodos()
+  const { openModal, valueToDelete } = useStore()
   const { handleDelete } = useDelete()
 
   const cancelDelete = () => openModal(false)

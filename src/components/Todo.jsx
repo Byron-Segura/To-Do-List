@@ -6,16 +6,14 @@ export function Todo ({ todo, setValueToEdit, completeTodo, openModal }) {
 
   return (
     <article className='task'>
-
       <div>
         <input
           onClick={() => completeTodo(id)}
-          className='task-check'
+          className='check'
           type='checkbox'
         />
         <p className='task-text '>{text}</p>
       </div>
-
       <div>
         <button>
           <i
@@ -33,7 +31,6 @@ export function Todo ({ todo, setValueToEdit, completeTodo, openModal }) {
           </i>
         </button>
       </div>
-
     </article>
   )
 }

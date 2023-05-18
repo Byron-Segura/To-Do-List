@@ -41,7 +41,7 @@ export const useTodosStore = create(persist((set, get) => {
 
       setTimeout(() => {
         deleteTodo(data)
-      }, 500)
+      }, 1000)
     },
 
     editTodo: (data) => {

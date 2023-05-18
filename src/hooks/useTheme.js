@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useTodos } from './useTodos'
+import { useStore } from './useStore'
 import { DarkModeIcon, LightModeIcon } from '../components/Icons'
 
 export function useTheme () {
-  const { theme, changeTheme } = useTodos()
+  const { theme, changeTheme } = useStore()
   const [iconTheme, setIconTheme] = useState()
 
   useEffect(() => {

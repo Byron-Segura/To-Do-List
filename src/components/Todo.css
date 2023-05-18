@@ -46,8 +46,6 @@
   opacity: 0.75;
 }
 
-/*** Complete Todo Transition ***/
-
 .check {
   appearance: none;
   -webkit-appearance: none;
@@ -64,13 +62,13 @@
 }
 
 .check:checked {
-  background-color: #21b511;
+  background-color: #265421;
 }
 
 .check:checked ~ p {
   text-decoration: line-through;
   color: #949494;
-  transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 1s;
 }
 
 .check:checked:before {
