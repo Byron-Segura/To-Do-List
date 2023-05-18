@@ -4,9 +4,15 @@ import { persist } from 'zustand/middleware'
 export const useTodosStore = create(persist((set, get) => {
   return {
     todos: [],
+    theme: null,
     modal: false,
     valueToDelete: null,
     formValue: '',
+
+    changeTheme: (data) => {
+      const changeTheme = data
+      set({ theme: changeTheme })
+    },
 
     handleValue: (data) => {
       const newValue = {
@@ -35,7 +41,7 @@ export const useTodosStore = create(persist((set, get) => {
 
       setTimeout(() => {
         deleteTodo(data)
-      }, 1000)
+      }, 500)
     },
 
     editTodo: (data) => {

@@ -1,12 +1,34 @@
-import { useContext } from 'react'
-import { ThemeContext } from '../context/theme'
+import { useEffect, useState } from 'react'
+import { useTodos } from './useTodos'
+import { DarkModeIcon, LightModeIcon } from '../components/Icons'
 
 export function useTheme () {
-  const themeContext = useContext(ThemeContext)
+  const { theme, changeTheme } = useTodos()
+  const [iconTheme, setIconTheme] = useState()
 
-  if (themeContext === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
+  useEffect(() => {
+    if (theme === null) {
+      changeTheme('dark')
+      setIconTheme(LightModeIcon)
+    } else if (theme === 'light') {
+      setIconTheme(DarkModeIcon)
+    } else {
+      setIconTheme(LightModeIcon)
+    }
+  }, [])
+
+  const handleThemeChange = () => {
+    const newTheme = theme === 'dark'
+      ? 'light'
+      : 'dark'
+
+    const newIconTheme = newTheme === 'dark'
+      ? LightModeIcon
+      : DarkModeIcon
+
+    changeTheme(newTheme)
+    setIconTheme(newIconTheme)
   }
 
-  return themeContext
+  return { theme, changeTheme, handleThemeChange, iconTheme }
 }
