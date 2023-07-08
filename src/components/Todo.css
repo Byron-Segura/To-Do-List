@@ -62,7 +62,7 @@
 }
 
 .check:checked {
-  background-color: #265421;
+  background-color: #016fed;
 }
 
 .check:checked ~ p {
