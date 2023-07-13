@@ -26,7 +26,6 @@ export function helpFormEvents (
       editTodo(formValue)
       setValueToEdit(null)
     }
-
     handleReset()
   }
 

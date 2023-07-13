@@ -18,13 +18,8 @@ export function useTheme () {
   }, [])
 
   const handleThemeChange = () => {
-    const newTheme = theme === 'dark'
-      ? 'light'
-      : 'dark'
-
-    const newIconTheme = newTheme === 'dark'
-      ? LightModeIcon
-      : DarkModeIcon
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    const newIconTheme = newTheme === 'dark' ? LightModeIcon : DarkModeIcon
 
     changeTheme(newTheme)
     setIconTheme(newIconTheme)

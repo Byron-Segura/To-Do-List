@@ -25,9 +25,7 @@ export function TaskList () {
             setValueToEdit={setValueToEdit}
             key={todo.id}
           />
-        )
-        )}
-
+        ))}
     </section>
   )
 }

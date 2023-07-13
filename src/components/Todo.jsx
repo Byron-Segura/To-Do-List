@@ -7,26 +7,17 @@ export function Todo ({ todo, setValueToEdit, completeTodo, openModal }) {
   return (
     <article className='task'>
       <div>
-        <input
-          onClick={() => completeTodo(id)}
-          className='check'
-          type='checkbox'
-        />
+        <input onClick={() => completeTodo(id)} className='check' type='checkbox' />
         <p className='task-text '>{text}</p>
       </div>
       <div>
         <button>
-          <i
-            className='icon task-delete'
-            onClick={() => openModal(true, id)}
-          >
+          <i className='icon task-delete' onClick={() => openModal(true, id)}>
             <DeleteIcon />
           </i>
         </button>
         <button onClick={() => setValueToEdit(todo)}>
-          <i
-            className='icon task-edit'
-          >
+          <i className='icon task-edit'>
             <EditIcon />
           </i>
         </button>
